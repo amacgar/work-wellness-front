@@ -1,14 +1,84 @@
-<table mat-table [dataSource]="data" class="mat-elevation-z8" #tabla1>
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let articulo"> {{articulo.id}} </td>
-      </ng-container>
+<div class="mat-elevation-z8">  
+  <table mat-table [dataSource]="data" class="mat-elevation-z8" #tabla1>
+      <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let consumption"> {{consumption._id}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let consumption"> {{parseDate(consumption.date)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="hora">
+          <th mat-header-cell *matHeaderCellDef> Hora </th>
+          <td mat-cell *matCellDef="let consumption"> {{consumption.hour}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="consumo">
+          <th mat-header-cell *matHeaderCellDef> Consumo </th>
+          <td mat-cell *matCellDef="let consumption"> {{consumption.consumption}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="precio">
+          <th mat-header-cell *matHeaderCellDef> Precio </th>
+          <td mat-cell *matCellDef="let consumption"> {{consumption.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="precio por hora">
+          <th mat-header-cell *matHeaderCellDef> Precio por hora </th>
+          <td mat-cell *matCellDef="let consumption"> {{consumption.pricePerHour}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="borrar">
+          <th mat-header-cell *matHeaderCellDef> Borrar </th>
+          <td mat-cell *matCellDef="let j = index;">
+            <button mat-raised-button color="warn" focusable="false" (click)="delete(j)">
+              Borrar
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="update">
+          <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+          <td mat-cell *matCellDef="let j = index;">
+            <button mat-raised-button color="warn" focusable="false" (click)="update(j)">
+              Actualizar
+            </button>
+          </td>
+        </ng-container>
     
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="column"></tr>
-      <tr mat-row *matRowDef="let row; columns: column;"></tr>
-</table>
+        <tr mat-header-row *matHeaderRowDef="column"></tr>
+        <tr mat-row *matRowDef="let row; columns: column;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+</div>
+<div class="contenedor">
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="consumptionSelected._id" type="text" style="display: none;" readonly>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="consumptionSelected.date" type="date" placeholder="Ingrese la fecha">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="consumptionSelected.hour" type="number" placeholder="Ingrese la hora">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="consumptionSelected.consumption" type="number" placeholder="Ingrese el consumo">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="consumptionSelected.price" type="number" placeholder="Ingrese el precio">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="consumptionSelected.pricePerHour" type="number" placeholder="Ingrese el precio por hora">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="add()">Agregar</button>
+
+</div>
