@@ -54,7 +54,8 @@ export class TableComponent implements OnInit {
 
   public async delete(element: any) {
     if (confirm('Realmente quiere borrarlo?')) {
-      await this.handler.delete(this.data[element]);
+      const res = await this.handler.getAll();
+      await this.handler.delete(res[element]);
       await this.getAll();
       this.tabla1?.renderRows();
     }
