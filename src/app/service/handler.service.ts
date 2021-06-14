@@ -29,4 +29,9 @@ export class HandlerService {
     const res = await this.httpClient.post(`${this.uri}${ROUTES.crud.removeOne}`, JSON.stringify(element), {headers: this.header}).toPromise();
     return res;
   }
+
+  async find(element: any): Promise<any> {
+    const res = await this.httpClient.post(`${this.uri}${ROUTES.crud.findElement}`, JSON.stringify(element), {headers: this.header}).toPromise();
+    return res;
+  }
 }

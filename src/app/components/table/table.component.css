@@ -10,3 +10,17 @@ table {
     box-shadow: -1px 3px 66px 0px rgba(0,0,0,0.75);
     padding: 1rem;
 }   
+
+.center-text {
+    text-align: center;
+}
+
+.button-right {
+    float: right; 
+    margin: 10px 20px 10px 0px;
+}
+
+.error {
+    color: red;
+    padding-bottom: 3%;
+}

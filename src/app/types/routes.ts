@@ -6,8 +6,7 @@ const ROUTES = {
         findElement: '/find',
         update: '/update',
         removeOne: '/removeOne'
-    },
-    preload: '/preload'
+    }
 }
 
 export default ROUTES;

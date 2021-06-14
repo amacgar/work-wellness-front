@@ -1,10 +1,10 @@
 class Consumption {
     _id?: String;
     date: String;
-    hour: String;
-    consumption: String;
-    price: String;
-    pricePerHour: String;
+    hour: any;
+    consumption: any;
+    price: any;
+    pricePerHour: any;
 
     constructor ( date: String, hour: String, consumption: String, price: String, pricePerHour: String, id?: String ) {
         this.date = date;
